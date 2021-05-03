@@ -1,8 +1,8 @@
 image: elixir:latest
 
-ports:
-  - port: 8000
-    onOpen: open-preview
+tasks:
+  - init: mix do deps.get, deps.compile
+
 vscode:
   extensions:
     - elixir-lsp.elixir-ls@0.7.0:2ca97f93244ccc3fe21b9d321ca4e0b9
