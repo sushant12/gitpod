@@ -1,21 +1,33 @@
 defmodule PairSessionTest do
   use ExUnit.Case
 
-  # test "count one word" do
-  #   assert PairSession.count("word") == %{"word" => 1}
-  # end
-
-  # test "should return empty map for empty string" do
-  #   assert PairSession.count("") == %{}
-  # end
-
-  test "count multiple occurence" do
-    assert PairSession.count("elixir elixir ruby go") == %{"elixir" => 2, "go" => 1, "ruby" => 1}
+    # Given the user input is empty when calculating the sum then it should return zero.
+  test "when user input is empty, return zero" do
+    assert PairSession.sum() == 0
   end
 
-  test "should raise an error if parameter is not binary" do
-    assert_raise FunctionClauseError, fn ->
-      PairSession.count('elixir elixir')
-    end
+  # Given the user input is one number when calculating the sum then it should return the same number. (example "3" should equal 3)
+  test "when user input is one number, return same number" do
+    assert PairSession.sum("3") == 3
+  end
+
+  # Given the user input is two numbers when calculating the sum then it should return the sum of those numbers. (example "1,2" should equal 3)
+  test "when user input is two numbers, return them sum" do
+    assert PairSession.sum("1,2") == 3
+  end
+
+  # Given the user input is an unknown amount of numbers when calculating the sum then it should return the sum of all the numbers. (example "1,2,3" should equal 6)
+  test "when user input is an unknown amount of numbers, return them sum" do
+    assert PairSession.sum("1,2,3") == 6
+  end
+
+  # Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
+  test "when user input is multiple numbers with new line and comma delimiters, return them sum" do
+    assert PairSession.sum("1\n2,3") == 6
+  end
+
+  # Given the user input is multiple numbers with a custom single-character delimiter when calculating the sum then it should return the sum of all the numbers. (example “//;\n1;2” should return 3)
+  test "when user input is multiple numbers with a custom single-character delimiter, return them sum" do
+    assert PairSession.sum("//;\n1;2") == 3
   end
 end
